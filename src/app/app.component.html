@@ -1,0 +1,149 @@
+<!-- form -->
+<div class="container d-flex justify-content-center mb-4 mt-4">
+  <div class="">
+    <form class="form1" [formGroup]="registerForm" (ngSubmit)="save()">
+      <div class="banner div1">
+        <h1 class="h1">New Member Registration</h1>
+      </div>
+      <div class="colums div1">
+
+        <div class="item">
+          <label class="label1" for="fname">FullName<span>*</span></label>
+          <input class="input1 " id="fname" type="text" name="fname" formControlName="firstName">
+        </div>
+
+
+        <div class="item div1">
+          <label class="label1" for="address1">Date of Birth<span>*</span></label>
+          <input type="date" class=" form-control input1 " formControlName="dob">
+        </div>
+
+        <div class="item div1">
+          <label class="label1" for="state">Country<span>*</span></label>
+          <input class="input1  " id="state" type="text" name="state" formControlName="country">
+        </div>
+
+
+        <div class="item div1">
+          <label class="label1" for="eaddress">Email Address<span>*</span></label>
+          <input class="input1 " id="eaddress" type="text" name="eaddress" formControlName="email">
+        </div>
+        <div class="item"> Image
+          <input type="file" (change)="onFileSelect($event)" style="width: 400px;" class="form-control" id="form"
+            aria-describedby="emailHelp">
+        </div>
+      </div>
+      <div class="btn-block div1">
+        <button type="submit" class="btn btn-success me-2">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="container d-flex justify-content-center div1">
+        <div class="testbox div1">
+          <form class="form1" [formGroup]="registerForm" (ngSubmit)="save()">
+            <div class="banner div1">
+              <h1 class="h1">Profile</h1>
+            </div>
+            <div class="colums div1">
+              <div class="item">
+                <label class="label1" for="fname">FullName<span>*</span></label>
+                <input class="input1 " id="fname" type="text" name="fname" formControlName="firstName">
+              </div>
+
+              <div class="item div1">
+                <label class="label1" for="address1">Date of Birth<span>*</span></label>
+                <input type="date" class=" form-control input1 " formControlName="dob">
+              </div>
+
+              <div class="item div1">
+                <label class="label1" for="state">Country<span>*</span></label>
+                <input class="input1  " id="state" type="text" name="state" formControlName="country">
+              </div>
+
+
+              <div class="item div1">
+                <label class="label1" for="eaddress">Email Address<span>*</span></label>
+                <input class="input1 " id="eaddress" type="text" name="eaddress" formControlName="email">
+              </div>
+              <div class="item"> Image
+                <input type="file" (change)="onFileSelect($event)" style="width: 400px;" class="form-control" id="form"
+                  aria-describedby="emailHelp">
+              </div>
+
+            </div>
+
+            <div class="question">
+              <div class="question-answer">
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success me-2" (click)="edit()" data-dismiss="modal">Save</button>
+                </div>
+
+                <div>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- all -->
+<div class="container mb-4" style=" box-shadow: 5px 5px  15px 15px lightblue;">
+  
+    <div class="row">
+
+      <h4  style="background-color:rgb(235, 209, 209);  color: rgb(190, 52, 52);"><i>All User</i></h4>
+      <div class="col-md-12">
+        <div class="row d-flex">
+          <div *ngFor="let emp of employee; let i = index" class="col-md-6 p-2" >
+            <div class="card CardBackground">
+              <div class="card-body">
+                <img src="../assets/image/profile.png" class="card-text imageCard" />
+                <div data-toggle="modal" data-target="#exampleModal" (click)="setData(i)">
+                  <p class="card-text m-2"><b>FullName</b> - {{ emp.firstName}}</p>
+                </div>
+              
+                <div>
+                  <p class="card-text m-2"><b>Email</b>-{{ emp.email}}</p>
+                </div>
+                <div>
+                  <p class="card-text m-2"><b>Age</b>-{{ ageCalculator(emp.dob)}} </p>
+                </div>
+               
+                <div>
+                <p class="card-text m-2"><b>Country</b>-{{ emp.country}}</p>
+               </div>
+                <button class="btn btn-danger m-2" (click)="delete( emp.id )">Delete</button>
+                <button type="button" class="btn btn-info m-2" data-toggle="modal" data-target="#exampleModal"
+                  (click)="setData(i)">
+                  Update
+                </button>
+      
+      
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
